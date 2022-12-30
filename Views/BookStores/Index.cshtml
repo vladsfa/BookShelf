@@ -1,0 +1,155 @@
+﻿@model IEnumerable<BookStore_WebApplication.BookStore>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h3>Магазини</h3>
+
+@if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
+{
+<div class="nav-item dropdown" align="left" style="width: 100px">
+   <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+       Робота з файлами
+   </a>
+      <div class="dropdown-menu">
+          <h6>Оберіть exel-файл для заватаження</h6>
+            @using (Html.BeginForm("Import", "BookStores", FormMethod.Post, new { enctype = "multipart/form-data", id = "frm-excel" }))
+            {
+                <div >
+                    <div>Завантажте Excel-файл:</div>
+                    <div>
+                        <input type="file" name="fileExcel" id="fileExcel" /> 
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <div>Підтвердити:</div>
+                    <div>
+                        <input type="submit" value="Import" /> 
+                    </div>
+                    <div class="dropdown-divider"></div>   
+                    <div>
+                        <h6>Завантаження інформації в файл</h6>
+                        <div class="form-group">
+                            <input asp-action="Export" type="submit" value="Export to Excel" class="btn btn-success" />
+                        </div>
+                        <div class="form-group">
+                            <input asp-action="DExport" type="submit" value="Export to Docs" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+            }
+      </div>
+</div> 
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<p>
+    <a asp-action="Create">Create New</a>
+    </p>
+}
+else
+{
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+}
+
+<div class="container">
+    <div id="chart1"></div>
+</div>
+@section scripts{
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+
+            $.get('/api/Charts/JsonData', function(JsonData) {
+                data = google.visualization.arrayToDataTable(JsonData, false);
+                var option = {
+                    title: "Співвідношення магазинів та кількості книг в них",
+                    width: 500,
+                    height: 400
+                };
+                chart = new google.visualization.ColumnChart(document.getElementById('chart1'));
+                chart.draw(data, option);
+            })
+        }
+    </script>
+}

@@ -1,0 +1,99 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.logo-image {
+    width: 150px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-top: -6px;
+}
+
+.menu_list {
+    color: azure;
+    text-align: center;
+    word-spacing: 100px;
+}
+
+.notLogin_page {
+    text-align: center;
+    margin: 10px auto;
+}
+
+.div_as_form {
+    background: linear-gradient(#27AE60 30%, #2874A6);
+    padding: 40px;
+    max-width: 600px;
+    margin: 40px auto;
+    border: 4px dashed white;
+    border-radius: 15%;
+    box-shadow: 0 4px 10px 4px rgba($form-bg,.3);
+}
+
+.myfield-wrap {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.myforgot {
+    margin-top: -20px;
+    text-align: right;
+}
+
+.mybutton {
+    border: 0;
+    outline: none;
+    border-radius: 0;
+    padding: 15px 0;
+    font-size: 2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    background: #1ab188;
+    color: white;
+    transition: all.5s ease;
+    -webkit-appearance: none;
+}
+
+.mybutton-block {
+    display: block;
+    width: 100%;
+}
+
+.myinput {
+    font-size: 22px;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 5px 10px;
+    background-color: white;
+    border: 1px solid gray-light;
+    color: black;
+    border-radius: 0;
+    transition: border-color .25s ease, box-shadow .25s ease;
+    &:focus
+    {
+        outline: 0;
+        border-color: main;
+    }
+}
+
+.mylabel{
+    color:black;
+}

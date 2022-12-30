@@ -1,0 +1,14 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model BookStore_WebApplication.Models.User
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h3>Ви справді бажаєте видалити цього користувача?</h3>
+
+<form asp-controller="Users" asp-action="Delete" method="post">
+    <input type="hidden" name="userId" value="@Model.Id" />
+    <input type="submit" value="Видалити" class="btn btn-danger" /> |
+    <a asp-action="Index">Назад</a>
+</form>

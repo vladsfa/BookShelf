@@ -1,0 +1,44 @@
+﻿@model BookStore_WebApplication.ViewModels.RegisterViewModel
+
+<div class="div_as_form">
+            
+      <div>  
+          <h1>Sign Up</h1>
+
+        <form method="post" asp-controller="Accounts" asp-action="Register" asp-route-returnUrl="@Model.ReturnUrl">
+          
+              <div class="top-row">
+                <div class="myfield-wrap">
+                    <label class="mylabel" asp-for="Email"></label>
+                    <input class="myinput" asp-for="Email" />
+                    <span asp-validation-for="Email"></span>
+                </div>
+        
+                <div class="myfield-wrap">
+                    <label class="mylabel" asp-for="Year"></label>
+                    <input class="myinput" asp-for="Year" />
+                    <span asp-validation-for="Year"></span>
+                </div>
+              </div>
+
+              <div class="myfield-wrap">
+                    <label class="mylabel" asp-for="Password"></label>
+                    <input class="myinput" asp-for="Password" />
+                    <span asp-validation-for="Password"></span>
+              </div>
+          
+              <div class="myfield-wrap">
+                    <label class="mylabel" asp-for="PasswordConfirm"></label>
+                    <input class="myinput" asp-for="PasswordConfirm" />
+                    <span asp-validation-for="PasswordConfirm"></span>
+              </div>
+          
+              <button type="submit" class="mybutton mybutton-block"/>
+                    Get Started
+              </button>
+          
+          </form>  
+      </div>
+      
+</div>
+

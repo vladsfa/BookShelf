@@ -1,0 +1,38 @@
+﻿@model IEnumerable<BookStore_WebApplication.BookOrder>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h3>Списки замовлень</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Number)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdBookNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdOrderNavigation)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdBookNavigation.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdOrderNavigation.Id)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

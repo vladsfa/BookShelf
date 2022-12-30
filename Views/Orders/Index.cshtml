@@ -1,0 +1,53 @@
+﻿@model IEnumerable<BookStore_WebApplication.Order>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h3>Orders</h3>
+
+<p>
+    <a asp-action="Create">Створити нове замовлення</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdClientNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdDeliveryNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdEmployeeNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdClientNavigation.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdDeliveryNavigation.DeliveryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdEmployeeNavigation.FullName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Змінити</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Деталі</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Видалити</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,188 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BookStore_WebApplication</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap_state.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/BookStore_WebApplication.styles.css" asp-append-version="true" />
+</head>
+<body style="background-image: url('image/background.jpg')">
+
+    @if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
+    {
+        <header style="background-color: #1B2631;">
+
+            <nav class="navbar navbar-expand-lg navbar-dark" style="border-bottom: 1px solid white;">
+              <div class="container-fluid" style="margin-left: 135px;">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <div class="logo-image">
+                        <img src="image/BookShelf.png" class="img-fluid">
+                    </div>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarColor02">
+                  <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                     <a class="nav-link" asp-area="" asp-controller="BookStores" asp-action="Index">Магазини
+                        <span class="visually-hidden">(current)</span>
+                      </a>
+                    </li>
+                    <li class="nav-item" style="margin-left: 40px;">
+                      <a class="nav-link" asp-area="" asp-controller="Employees" asp-action="Index">Працівники</a>
+                    </li>
+                    <li class="nav-item" style="margin-left: 40px;">
+                      <a class="nav-link" asp-area="" asp-controller="Deliveries" asp-action="Index">Доставка</a>
+                    </li>
+                    <li class="nav-item" style="margin-left: 40px;">
+                      <a class="nav-link" asp-area="" asp-controller="Books" asp-action="Index">Книги</a>
+                    </li>   
+                    <li class="nav-item" style="margin-left: 40px;">
+                      <a class="nav-link" asp-area="" asp-controller="Authors" asp-action="Index">Автори</a>
+                    </li>      
+                    <li class="nav-item" style="margin-left: 40px;">
+                      <a class="nav-link" asp-area="" asp-controller="Orders" asp-action="Index">Замовлення</a>
+                    </li>
+                    <li class="nav-item" style="margin-left: 40px;">
+                      <a class="nav-link" asp-area="" asp-controller="BookOrders" asp-action="Index">Списки замовлень</a>
+                    </li>
+                    <li class="nav-item" style="margin-left: 40px;">
+                      <a class="nav-link" asp-area="" asp-controller="Clients" asp-action="Index">Клієнти</a>
+                    </li>       
+                  </ul>
+                    <div style="margin-right: 135px; text-align: right;">
+                       <a asp-area="" asp-controller="Home" asp-action="Index">
+                          <div style="text-align:center">
+                             <img src="~/image/user.png" style="width: 40px; height: 40px;">
+                          </div>
+                       </a>
+                       <h6 style="text-align:center">
+                           @User.Identity.Name
+                       </h6>                    
+
+                       <form method="post" asp-controller="Roles" asp-action="Index">
+                           <input class="btn btn-info" type="submit" value="Керувати користувачами" />
+                       </form>     
+                       
+                       <form method="post" asp-controller="Accounts" asp-action="Logout">
+                           <input class="btn btn-danger" style="width: 225px;" type="submit" value="Вийти" />
+                       </form>
+                    </div>
+                </div>
+              </div>
+            </nav>          
+
+        </header>   
+    }
+    else if (User.Identity.IsAuthenticated && User.IsInRole("user"))
+    {
+        <header style="background-color: #1B2631;">
+
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+              <div class="container-fluid" style="margin-left: 135px;">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <div class="logo-image">
+                        <img src="image/BookShelf.png" class="img-fluid">
+                    </div>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarColor02">
+                  <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                     <a class="nav-link" asp-area="" asp-controller="BookStores" asp-action="Index">Магазини
+                        <span class="visually-hidden">(current)</span>
+                      </a>
+                    </li>
+                    <li class="nav-item" style="margin-left: 40px;">
+                      <a class="nav-link" asp-area="" asp-controller="Employees" asp-action="Index">Працівники</a>
+                    </li>
+                    <li class="nav-item" style="margin-left: 40px;">
+                      <a class="nav-link" asp-area="" asp-controller="Deliveries" asp-action="Index">Доставка</a>
+                    </li>
+                    <li class="nav-item" style="margin-left: 40px;">
+                      <a class="nav-link" asp-area="" asp-controller="Books" asp-action="Index">Книги</a>
+                    </li>   
+                    <li class="nav-item" style="margin-left: 40px;">
+                      <a class="nav-link" asp-area="" asp-controller="Authors" asp-action="Index">Автори</a>
+                    </li>
+                    <li class="nav-item" style="margin-left: 80px;">
+                      <a class="nav-link" style="color: green;" asp-area="" asp-controller="UserOrders" asp-action="Create">Створити замовлення</a>
+                    </li>
+                  </ul>
+                    <div style="margin-right: 135px; text-align: right;">
+                       <a asp-area="" asp-controller="Home" asp-action="Index">
+                          <div style="text-align:center">
+                             <img src="~/image/user.png" style="width: 40px; height: 40px;">
+                          </div>
+                       </a>
+                       <h6 style="text-align:center">
+                           @User.Identity.Name
+                       </h6>                        
+                       
+                       <form method="post" asp-controller="Accounts" asp-action="Logout">
+                           <input class="btn btn-danger" style="width: 205px;" type="submit" value="Вийти" />
+                       </form>
+                    </div>
+                </div>
+              </div>
+            </nav>          
+
+        </header>   
+    }
+    else
+    {
+        <br />
+        <div class="notLogin_page">
+            <div>
+                <img src="~/image/user.png" style="width: 40px; height: 40px;">
+            </div>
+
+            <br >
+
+            <form asp-controller="Accounts" asp-action="Login">
+                 <input class="btn btn-success" style="width: 160px;" type="submit" value="Увійти" />
+            </form>
+
+            <form asp-controller="Accounts" asp-action="Register">
+                 <input class="btn btn-warning" style="width: max-content;" type="submit" value="Зареєструватись" />
+            </form>
+           
+        </div>
+    }
+
+    <br />
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <br />
+
+    <footer class="border-top footer text-muted" style="background-color: #1B2631;">
+        <div class="container" style="color: white;">
+            <p>
+                &copy; 2022 - BookStore - 
+                <a asp-area="" asp-controller="Home" asp-action="Privacy" style="color: white;">
+                    Privacy
+                </a>
+                <span style="display: inline-block; margin-left: 800px;" />
+                | Created by Niskoguz Vladislav | TTP-32 |
+            </p>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

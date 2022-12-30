@@ -1,0 +1,33 @@
+﻿@model BookStore_WebApplication.ViewModels.CreateUserViewModel
+
+@{
+    ViewBag.Title = "Adding new user";
+}
+
+<h3>Створення нового користувача</h3>
+
+<form asp-controller="Users" asp-action="Create">
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="UserEmail" class="control-label">Email</label>
+        <input type="text" asp-for="UserEmail" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="UserPassword" class="control-label">Пароль</label>
+        <input type="password" asp-for="UserPassword" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="UserYear" class="control-label">Рік народження</label>
+        <input type="number" asp-for="UserYear" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Додати" class="btn btn-outline-secondary" />
+    </div>
+
+</form>
+
+<a asp-controller="Roles" asp-action="UserList">Назад</a>

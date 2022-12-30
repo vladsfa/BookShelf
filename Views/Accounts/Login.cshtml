@@ -1,0 +1,32 @@
+﻿@model BookStore_WebApplication.ViewModels.LoginViewModel
+
+<div class="div_as_form">   
+          <h1>Welcome Back!</h1>
+          
+          <form asp-controller="Accounts" asp-action="Login" asp-route-returnUrl="@Model.ReturnUrl">
+
+            <div asp-validation-summary="ModelOnly"></div>
+            <div class="myfield-wrap">
+                <label class="mylabel" asp-for="Email"></label>
+                <input class="myinput" asp-for="Email" />
+                <span asp-validation-for="Email"></span>
+            </div>
+          
+            <div class="myfield-wrap">
+                <label class="mylabel" asp-for="Password"></label>
+                <input class="myinput" asp-for="Password" />
+                <span asp-validation-for="Password"></span>
+            </div>
+
+                        <div class="myfield-wrap">
+                            <input asp-for="RememberMe" />
+                            <span asp-validation-for="RememberMe"></span>
+                            <label class="mylabel" asp-for="RememberMe"></label>
+                        </div>         
+
+            <button class="mybutton mybutton-block"/>
+                Увійти
+            </button>
+          
+          </form>
+</div>

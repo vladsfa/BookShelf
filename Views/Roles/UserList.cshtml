@@ -1,0 +1,42 @@
+﻿@model IEnumerable<BookStore_WebApplication.Models.User>
+
+<h4>Список користувачів</h4>
+
+<a asp-controller="Users" asp-action="Create">Додати Користувача</a>
+<br />
+
+<table class="table">
+
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>
+                @user.Email
+            </td>
+            <td>
+                <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-userid="@user.Id">
+                    Права Доступу
+                </a>
+            </td>
+            <td>
+                <a class="btn btn-sm btn-primary" asp-controller="Users" asp-action="Edit" asp-route-userid="@user.Id">
+                    Змінити
+                </a>
+            </td>
+            <td>
+                <a class="btn btn-sm btn-primary" asp-controller="Users" asp-action="ChangePassword" asp-route-userid="@user.Id">
+                    Змінити пароль
+                </a>
+            </td>
+            <td>
+                <a class="btn btn-sm btn-danger" asp-controller="Users" asp-action="Delete" asp-route-userid="@user.Id">
+                    Видалити
+                </a>
+            </td>
+        </tr>
+    }
+
+</table>
+<br />
+
+<a asp-action="Index">Назад</a>
